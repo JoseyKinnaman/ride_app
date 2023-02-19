@@ -1,51 +1,20 @@
 class RidesController < ApplicationController
-  before_action :set_ride, only: %i[ show update destroy ]
 
   # GET /rides
   def index
-    @rides = Ride.all
-
+    # scope it by driver
+    # order it by rides in descending score order with scope
+    @rides = driver.rides.by_score.paginate(page: pagination_page, per_page: 5)
     render json: @rides
   end
 
-  # GET /rides/1
-  def show
-    render json: @ride
-  end
-
-  # POST /rides
-  def create
-    @ride = Ride.new(ride_params)
-
-    if @ride.save
-      render json: @ride, status: :created, location: @ride
-    else
-      render json: @ride.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /rides/1
-  def update
-    if @ride.update(ride_params)
-      render json: @ride
-    else
-      render json: @ride.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /rides/1
-  def destroy
-    @ride.destroy
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ride
-      @ride = Ride.find(params[:id])
+
+    def driver
+      Driver.find(params.require(:driver_id))
     end
 
-    # Only allow a list of trusted parameters through.
-    def ride_params
-      params.require(:ride).permit(:start_address, :destination)
+    def pagination_page
+      params.fetch(:page, 1).to_i
     end
 end
