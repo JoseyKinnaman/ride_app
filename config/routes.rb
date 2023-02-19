@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  resources :drivers
-  resources :rides
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :drivers, only: [] do
+    # /drivers/:driver_id/rides
+    resources :rides, only: :index
+  end
 end
