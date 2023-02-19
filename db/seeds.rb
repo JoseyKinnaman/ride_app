@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# TODO: need to make this idempotent
+3.times do |f|
+  Driver.create(home_address: "12#{f} Main St").tap do |driver|
+    # create rides for driver
+    30.times do |n|
+      driver.rides << Ride.new(
+        start_address: "12#{n} Apple St",
+        destination: "12#{n} Orange St",
+        ride_earnings: rand(4..80), # float
+        ride_duration:  rand(300..2000), # integer
+        commute_duration: rand(300..2000)# integer in seconds
+      )
+    end
+  end
+end
