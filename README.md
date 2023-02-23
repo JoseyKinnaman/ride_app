@@ -1,11 +1,9 @@
 # README
 
-# _Hop Skip Drive Ride API_
+# _Ride API_
 ### By Josey Kinnaman
 ### February, 2023
 
-## Description
-The primary goal of this exercise was to demonstrate how I think about testing, readability, and structuring a Rails application.
 
 ## Specifications:
 - Create a Rails 7 application
@@ -16,13 +14,6 @@ The primary goal of this exercise was to demonstrate how I think about testing, 
 - API documentation for this endpoint in MarkDown
 - Calculates the score of a ride in $ per hour as: (ride earnings) / (commute duration + ride duration). Higher is better.
 - RSpec tests
-
- ***_Google Maps is expensive. Consider how you can reduce duplicate API calls_:***
-
-  I did not get far enough to integrate this API. I used seeded data while building the API and this was sufficient for the ask of the prompt. I would consider caching the response in the future or saving frequently used locations to the database (like starting and destination addresses for the ride and the home address of the driver). It may actually be against the Google API though to save their information to the database so I would consider using the Geolocation API instead or as well.
-
-## Issues
- _I had an issue with Rails 7 and Rspec that I was unable to debug within the given time frame. I pseudo coded out my tests as best as possible. Normally I would work with TDD but went with Dream development because of this. This was my first time working with Rails 7. I will continue to try to debug but wanted to submit by the deadline. I am truly sorry._
 
 
 ## Setup//Install
